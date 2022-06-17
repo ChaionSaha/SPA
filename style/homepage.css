@@ -1,0 +1,244 @@
+*,
+*::before,
+*::after {
+  font-weight: inherit;
+  padding: inherit;
+  margin: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+body {
+  font-family: "Bitter", serif;
+  font-size: 62.5%;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+  background-size: 400% 400%;
+  animation: gradient-anim;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes gradient-anim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body {
+  position: relative;
+  width: 99vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+.navbar {
+  margin: 2rem 0;
+  height: 5rem;
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar p {
+  color: transparent;
+  font-weight: bolder;
+  -webkit-text-stroke: 1px black;
+}
+
+.user-data {
+  width: 95vw;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+.user-data thead {
+  height: 3.7rem;
+}
+.user-data thead tr {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  color: #ffffff;
+  text-align: left;
+  font-weight: 500;
+}
+.user-data thead tr td {
+  border-bottom: none;
+}
+.user-data thead tr td:first-child {
+  border-top-left-radius: 0.7rem;
+  border-bottom-left-radius: 0.7rem;
+}
+.user-data thead tr td:last-child {
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+}
+.user-data tr {
+  transition: all 300ms;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.user-data tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1rem);
+}
+.user-data tr:first-child {
+  border-top-left-radius: 0.7rem;
+  border-bottom-left-radius: 0.7rem;
+}
+.user-data tr:last-child {
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+}
+.user-data td {
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 0.7rem;
+  text-align: center;
+}
+.user-data td:first-child {
+  border-top-left-radius: 0.7rem;
+  border-bottom-left-radius: 0.7rem;
+}
+.user-data td:last-child {
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+}
+.user-data button {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 5px;
+  border-radius: 5px;
+  transition: all 300ms;
+  color: rgba(0, 0, 0, 0.8);
+}
+.user-data button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes gradient-anim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+::-webkit-scrollbar {
+  width: 12px;
+  z-index: 100;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+
+.hidden {
+  transform: scale(0);
+  display: none;
+}
+
+.exit {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.section-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.modal-view {
+  margin-top: 1rem;
+  font-size: 1.7rem;
+}
+
+.user p:not(:first-of-type) {
+  color: rgba(0, 0, 0, 0.4);
+}
+.user p span {
+  color: black;
+}
+
+.name {
+  font-size: 3.5rem;
+  color: transparent;
+  margin-bottom: 1rem;
+  font-weight: bolder;
+  -webkit-text-stroke: 1px black;
+}
+
+.first-name {
+  margin-bottom: 1rem;
+}
+
+.last-name {
+  margin-bottom: 1rem;
+}
+
+.email {
+  margin-bottom: 1rem;
+}
+
+.point {
+  margin-bottom: 1rem;
+}
+
+.phone {
+  margin-bottom: 1rem;
+}
+
+.section-3 {
+  height: 100%;
+  width: 100%;
+}
+.section-3 .user div {
+  display: flex;
+  width: 110%;
+  align-items: center;
+}
+.section-3 .user div p {
+  flex-grow: 1;
+}
+.section-3 .user div input {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  outline: none;
+  transition: all 400ms;
+}
+.section-3 .user div input:focus {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(30px);
+}
+.section-3 .user button {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 5px;
+  margin-top: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  transition: all 300ms;
+  color: rgba(0, 0, 0, 0.7);
+}
+.section-3 .user button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
