@@ -410,6 +410,17 @@ const section3 = document.querySelector(".section-3");
 const sections = document.querySelectorAll(".section");
 
 const display = function (arr) {
+	tb.innerHTML = `<thead>
+						<tr>
+							<td>First Name</td>
+							<td>Last Name</td>
+							<td>Email</td>
+							<td>Points</td>
+							<td>Phone</td>
+							<td>Company</td>
+							<td>Options</td>
+						</tr>
+					</thead>`;
 	arr.forEach((user, i) => {
 		const html = `<tr id=${user.id}> 
         <td>${user.firstName}</td> 
@@ -418,42 +429,44 @@ const display = function (arr) {
         <td>${user.point}</td>
         <td>${user.phone}</td>
         <td>${user.company}</td>
-        <td> <button class='view-data' data-id='${i}'>View</button> <button class='edit-data' data-id='${i}'>Edit</button> <button class='delete-data' data-id='${i}'>Delete</button>
+        <td> <button class='view-data' data-id='${i}'>View</button> 
+		<button class='edit-data' data-id='${i}'>Edit</button> 
+		<button class='delete-data' data-id='${i}'>Delete</button>
         </tr>
         `;
 		tb.insertAdjacentHTML("beforeend", html);
 	});
-};
 
-display(data);
+	var userEmail;
 
-var userEmail;
+	const modal = document.querySelector("#modal");
+	const exitButtons = document.querySelectorAll(".exit");
+	const modalView = document.querySelector(".modal-view");
 
-const modal = document.querySelector("#modal");
-const exitButton = document.querySelector(".exit");
-const modalView = document.querySelector(".modal-view");
+	const viewBtns = document.querySelectorAll(".view-data");
+	const viewBtnsArr = [...viewBtns];
+	let count = 0;
 
-const viewBtns = document.querySelectorAll(".view-data");
-const viewBtnsArr = [...viewBtns];
-let count = 0;
+	document.querySelectorAll("button").forEach((btn) => {
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
 
-document.querySelectorAll("button").forEach((btn) => {
-	btn.addEventListener("click", (e) => {
-		e.preventDefault();
-		if (e.target.classList.contains("view-data")) {
-			sections.forEach((sec) => {
-				if (sec.classList.contains("hidden")) return;
-				sec.classList.add("hidden");
-			});
-			section2.classList.remove("hidden");
-			userEmail =
-				e.target.parentElement.parentElement.children[2].innerText;
+			////////////////////////////////////////////////////
+			//View-data
+			if (e.target.classList.contains("view-data")) {
+				sections.forEach((sec) => {
+					if (sec.classList.contains("hidden")) return;
+					sec.classList.add("hidden");
+				});
+				section2.classList.remove("hidden");
 
-			let user = data.find((item) => {
-				return item.email === userEmail;
-			});
+				userEmail =
+					e.target.parentElement.parentElement.children[2].innerText;
+				let user = data.find((item) => {
+					return item.email === userEmail;
+				});
 
-			let html = `<p class='name'>${user.firstName} ${user.lastName}</p>
+				let html = `<p class='name'>${user.firstName} ${user.lastName}</p>
 						<p class='first-name'>First Name: <span>${user.firstName}</span></p>
 						<p class='last-name'>Last Name: <span>${user.lastName}</span></p>
 						<p class='email'>Email: <span>${user.email}</span></p> 
@@ -461,21 +474,89 @@ document.querySelectorAll("button").forEach((btn) => {
 						<p class='phone'>Phone: <span>${user.phone}</span></p>
 						<p class='company'>Company: <span>${user.company}</span></p>`;
 
-			modalView.insertAdjacentHTML("beforeend", html);
-		}
+				modalView.insertAdjacentHTML("beforeend", html);
+			}
+			///////////////////////////////////////////////////////
+			// Edit-data
+			else if (e.target.classList.contains("edit-data")) {
+				sections.forEach((sec) => {
+					if (sec.classList.contains("hidden")) return;
+					sec.classList.add("hidden");
+				});
+				section3.classList.remove("hidden");
 
-		if (e.target.classList.contains('edit-data'))
-		{
+				userEmail =
+					e.target.parentElement.parentElement.children[2].innerText;
+				let index = 0;
+				let user = data.find((item, i) => {
+					index = i;
+					return item.email === userEmail;
+				});
+
+				let firstName = document.querySelector("#first-name");
+				let lastName = document.querySelector("#last-name");
+				let email = document.querySelector("#email");
+				let point = document.querySelector("#point");
+				let phone = document.querySelector("#phone");
+				let company = document.querySelector("#company");
+				let name = document.querySelector(".name");
+				let submit = document.querySelector(".submit");
+
+				name.innerText = `${user.firstName} ${user.lastName}`;
+				firstName.value = `${user.firstName}`;
+				lastName.value = `${user.lastName}`;
+				email.value = `${user.email}`;
+				point.value = `${user.point}`;
+				phone.value = `${user.phone}`;
+				company.value = `${user.company}`;
+
+				submit.addEventListener("click", (e) => {
+					e.preventDefault();
+					data[index].firstName = firstName.value;
+					data[index].lastName = lastName.value;
+					data[index].email = email.value;
+					data[index].point = point.value;
+					data[index].phone = phone.value;
+					data[index].company = company.value;
+					console.log(user);
+					console.log(data);
+					sections.forEach((sec) => {
+						if (sec.classList.contains("hidden")) return;
+						sec.classList.add("hidden");
+					});
+					section1.classList.remove("hidden");
+					display(data);
+				});
+			}
 			
-		}
-	});
-});
+			////////////////////////////////////////////
+			// Delete data
+			else if (e.target.classList.contains("delete-data"))
+			{
+				userEmail =
+					e.target.parentElement.parentElement.children[2].innerText;
+				let index = 0;
+				let user = data.find((item, i) => {
+					index = i;
+					return item.email === userEmail;
+				});
 
-exitButton.addEventListener("click", (e) => {
-	modalView.innerHTML = ``;
-	sections.forEach((sec) => {
-		if (sec.classList.contains("hidden")) return;
-		sec.classList.add("hidden");
+				data.splice(index, 1);
+				display(data);
+			}
+		});
 	});
-	section1.classList.remove("hidden");
-});
+
+	exitButtons.forEach((btn) => {
+		btn.addEventListener("click", (e) => {
+			modalView.innerHTML = ``;
+			sections.forEach((sec) => {
+				if (sec.classList.contains("hidden")) return;
+				sec.classList.add("hidden");
+			});
+			section1.classList.remove("hidden");
+		});
+	});
+};
+
+display(data);

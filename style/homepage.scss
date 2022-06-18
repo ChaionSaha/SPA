@@ -5,7 +5,7 @@
 body {
 	position: relative;
 	width: 99vw;
-	height: 100vh;
+	// min-height: 100vh;
 	overflow: auto;
 }
 
@@ -24,7 +24,6 @@ body {
 		-webkit-text-stroke: 1px rgba($color: #000, $alpha: 1);
 	}
 }
-
 
 .user-data {
 	width: 95vw;
@@ -103,10 +102,9 @@ body {
 	}
 }
 
-@include animations;
+
 
 @include scroll;
-
 
 .hidden {
 	transform: scale(0);
@@ -121,11 +119,12 @@ body {
 	cursor: pointer;
 }
 
-.section-2{
+.section-2 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	// overflow-y: hidden;
 }
 
 .modal-view {
@@ -145,7 +144,7 @@ body {
 .name {
 	font-size: 3.5rem;
 	color: transparent;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	font-weight: bolder;
 	-webkit-text-stroke: 1px rgba($color: #000, $alpha: 1);
 }
@@ -170,22 +169,32 @@ body {
 }
 
 .section-3 {
-	height: 100%;
+	min-height: 98vh;
 	width: 100%;
-	& .user {
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+
+	& .edit-user {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
 		& div {
 			display: flex;
-			width: 110%;
 			align-items: center;
+			width: 40%;
 
 			& p {
 				flex-grow: 1;
+				color: rgba($color: #000, $alpha: 0.5);
 			}
 
 			& input {
 				padding: 0.5rem;
 				background-color: transparent;
-				border: 1px solid rgba(#000, 0.3);
+				border: 1px solid rgba(#000, 0.5);
 				outline: none;
 				transition: all 400ms;
 				&:focus {
